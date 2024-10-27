@@ -20,12 +20,13 @@ export const SubHeadLine = styled.span`
 export const PeriodWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 14px; //TODO: 피그마와 간격이 상이함 확인 필요-> 피그마 간격대로 적용 시 간격이 동일하지 않음
+  align-items: center;
+  row-gap: 30px;
 `;
 
 export const ActivityButton = styled.button`
   position: relative;
-  width: 100%;
+  width: 315px;
 `;
 
 export const icon = (isSelected: boolean) => (theme: Theme) =>
@@ -46,7 +47,7 @@ export const ActivityInfo = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 15px 20px 15px 30px;
+  margin-top: 2%;
 `;
 
 export const ActivityTitle = styled.span`
@@ -64,7 +65,7 @@ export const arrowIcon = css`
 export const SelectInfo = styled.p`
   ${({ theme }) => css`
     ${theme.fonts.body1}
-    margin-top: 42px;
+    margin-top: 50px;
     text-align: center;
 
     & > strong {

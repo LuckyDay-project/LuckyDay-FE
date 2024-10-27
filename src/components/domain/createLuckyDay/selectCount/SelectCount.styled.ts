@@ -42,6 +42,7 @@ export const SelectDatesBox = styled.div`
     justify-content: center;
     width: 100px;
     height: 40px;
+    padding-top: 2%;
     border-radius: 20px;
     background-color: ${theme.colors.beige};
   `}

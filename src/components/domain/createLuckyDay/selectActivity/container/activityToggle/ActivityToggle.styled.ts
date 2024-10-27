@@ -62,6 +62,7 @@ export const ActivityInfo = styled.div<{ isOpen: boolean; isChecked: boolean }>`
 export const ActivityTitle = styled.span`
   ${({ theme }) => css`
     ${theme.fonts.headline1};
+    margin-top: 4%;
 
     @media (max-width: 380px) {
       ${theme.fonts.headline1};
@@ -92,7 +93,7 @@ export const Activities = styled.div`
 
 export const Activity = styled.button<{ isSelected?: boolean }>`
   ${({ theme, isSelected }) => css`
-    ${theme.fonts.headline3};
+    ${theme.fonts.body1};
     display: flex;
     align-items: center;
     column-gap: 3px;
@@ -129,11 +130,11 @@ export const icon = css`
 
 export const input = (width?: number) => (theme: Theme) =>
   css`
+    ${theme.fonts.body1};
     width: ${width ? `calc(${width}px * 1.2 + 16px)` : "22px"};
     padding: 0;
     border: 0;
     background-color: ${theme.colors.lightBeige};
-    font-size: 1.6rem;
     outline: none;
   `;
 
@@ -143,7 +144,8 @@ export const customActiviyItem = styled.span`
 `;
 
 export const CustomInfo = styled.div<{ isCustom?: boolean }>`
-  ${({ isCustom }) => css`
+  ${({ theme, isCustom }) => css`
+    ${theme.fonts.body1};
     position: absolute;
     bottom: 60px;
     left: 0;
@@ -154,7 +156,6 @@ export const CustomInfo = styled.div<{ isCustom?: boolean }>`
 
 export const ContentLength = styled.span`
   ${({ theme }) => css`
-    ${theme.fonts.headline3};
     position: absolute;
     left: 40px;
     color: ${theme.colors.black};
@@ -163,6 +164,7 @@ export const ContentLength = styled.span`
 
 export const AddButton = styled.button`
   ${({ theme }) => css`
+    ${theme.fonts.body1};
     position: absolute;
     right: 40px;
     width: 60px;

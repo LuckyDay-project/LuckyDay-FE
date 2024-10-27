@@ -29,6 +29,8 @@ export const icon = css`
 
 export const Button = styled.button<{ isNotChecked: boolean }>`
   ${({ theme, isNotChecked }) => css`
+    display: flex;
+    align-items: center;
     border-radius: 30px;
     padding: 0 11px;
     background-color: ${isNotChecked
@@ -36,12 +38,18 @@ export const Button = styled.button<{ isNotChecked: boolean }>`
       : theme.colors.gray};
 
     & > span {
-      ${theme.fonts.headline3};
+      ${theme.fonts.body1};
+      margin-top: 2px;
       color: ${!isNotChecked && theme.colors.white};
     }
 
-    & > svg > path {
-      fill: ${!isNotChecked && theme.colors.white};
+    & > svg {
+      width: 20px;
+      height: 20px;
+
+      & > path {
+        fill: ${!isNotChecked && theme.colors.white};
+      }
     }
   `}
 `;

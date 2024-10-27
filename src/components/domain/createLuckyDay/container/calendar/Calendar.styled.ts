@@ -118,6 +118,7 @@ export const DayButton = styled.button<{
   isChecked: boolean;
 }>`
   ${({ isSelected, isExceptDate, isChecked, theme }) => css`
+    ${theme.fonts.body1};
     height: 35px;
     border-radius: 50%;
     border: 0;
