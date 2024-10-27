@@ -25,11 +25,9 @@ export const icon = css`
   height: 24px;
 `;
 
-export const Button = styled.button<{ variant?: "hasIcon" | "hasColor" }>`
-  ${({ variant }) => css`
-    position: relative;
-    width: ${variant === "hasColor" ? "120px" : "100px"};
-  `}
+export const Button = styled.button`
+  position: relative;
+  width: 90px;
 `;
 
 export const ButtonBox = styled.div<{
@@ -39,11 +37,11 @@ export const ButtonBox = styled.div<{
   ${({ theme, isSecond, variant }) => css`
     ${theme.fonts.headline2};
     position: absolute;
-    top: ${variant === "hasColor" && !isSecond ? "12px" : "9px"};
+    top: ${variant === "hasColor" && !isSecond ? "10px" : "8px"};
     left: ${variant === "hasColor"
       ? isSecond
         ? "28px"
-        : "13px"
+        : "10px"
       : isSecond
       ? "21px"
       : "10px"};

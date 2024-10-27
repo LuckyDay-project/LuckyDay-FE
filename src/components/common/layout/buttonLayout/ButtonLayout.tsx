@@ -32,7 +32,7 @@ function ButtonLayout({
       <S.Body>{children}</S.Body>
       {!isHideButtons && (
         <S.ButtonWrapper>
-          <S.Button variant={variant} onClick={handleClickFirstButton}>
+          <S.Button onClick={handleClickFirstButton}>
             <SvgFrame css={S.beigeIcon} icon={<ShortBoxIcon />} />
             <S.ButtonBox variant={variant}>
               {icon && icon}
