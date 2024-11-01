@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 import { activities, CheckIcon } from "assets";
-import type { ActivitiesServerModel, CreateLuckyDayForm } from "types";
+import type {
+  Activities,
+  ActivitiesServerModel,
+  CreateLuckyDayForm,
+} from "types";
 import { ActivityToggle } from "./container";
 import * as S from "./SelectActivity.styled";
 
@@ -30,21 +34,38 @@ function SelectActivity({
   const handleToggle = (toggleLabel: string | null): void =>
     setToggle(toggleLabel);
 
+  const changeIndex = (
+    arr: Activities[] | undefined,
+    idx1: number,
+    idx2: number
+  ) => {
+    if (!arr) return [];
+
+    const newArr = [...arr];
+    [newArr[idx1], newArr[idx2]] = [newArr[idx2], newArr[idx1]];
+
+    return newArr;
+  };
+
+  const arr = changeIndex(data?.resData, 2, 3);
+
   const handleCheckAllBoxes = () => {
-    const acts = data?.resData
-      .map((activity) => ({
-        category: activity.category ?? "",
-        actList:
-          activity.actList.length > 0
-            ? activity.actList.map((act) => act.actNo)
-            : [],
-        checked: currentActsUnChecked?.length === 5 ? true : false,
-      }))
+    const acts = arr
+      .map((activity) => {
+        return {
+          category: activity.category ?? "",
+          actList:
+            activity.actList.length > 0
+              ? activity.actList.map((act) => act.actNo)
+              : [],
+          checked: currentActsUnChecked?.length === 5 ? true : false,
+        };
+      })
       .filter(({ category }) => category !== "직접 입력");
 
     if (!acts) return;
 
-    setValue("acts", acts);
+    setValue("acts", acts.reverse());
   };
 
   return (
