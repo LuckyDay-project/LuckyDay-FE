@@ -55,7 +55,8 @@ function SelectActivity({
         return {
           category: activity.category ?? "",
           actList:
-            activity.actList.length > 0
+            activity.actList.length > 0 &&
+            watch("acts").flatMap((item) => item.actList).length === 0
               ? activity.actList.map((act) => act.actNo)
               : [],
           checked: currentActsUnChecked?.length === 5 ? true : false,
