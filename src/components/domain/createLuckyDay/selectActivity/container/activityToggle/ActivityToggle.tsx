@@ -130,6 +130,13 @@ function ActivityToggle({
   return (
     <>
       <S.ActivityButton
+        className={
+          activity.label === "맛있는 음식"
+            ? "tutoral_selectActivity_02"
+            : activity.label === "배움과 문화"
+            ? "tutoral_selectActivity_05"
+            : ""
+        }
         key={index}
         ref={ref}
         isOpen={isOpen}
