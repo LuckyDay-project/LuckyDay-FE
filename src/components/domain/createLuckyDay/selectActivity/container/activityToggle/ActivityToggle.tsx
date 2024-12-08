@@ -14,6 +14,7 @@ interface ActivityToggleProps {
   };
   data?: Activities;
   index: number;
+  isSixthSubStep?: boolean;
   isOpen: boolean;
   toggle: string | null;
   checked: boolean;
@@ -28,6 +29,7 @@ function ActivityToggle({
   data,
   index,
   checked,
+  isSixthSubStep,
   isOpen,
   toggle,
   setValue,
@@ -180,7 +182,7 @@ function ActivityToggle({
 
                   return (
                     <S.Activity
-                      isSelected={isSelected}
+                      isSelected={isSelected || isSixthSubStep}
                       ref={activityRef}
                       key={item.actNo}
                       onClick={handleItemClick(item.actNo)}

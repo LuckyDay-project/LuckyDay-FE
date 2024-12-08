@@ -60,6 +60,10 @@ export default function SelectActivity() {
     TUTORIAL_STEP_ORDER[currentStep] ===
       TUTORIAL_STEPS.CREATE_CYCLE_SELECT_ACTIVITY && subStep === 5;
 
+  const isSixthSubStep =
+    TUTORIAL_STEP_ORDER[currentStep] ===
+      TUTORIAL_STEPS.CREATE_CYCLE_SELECT_ACTIVITY && subStep === 6;
+
   const isSeventhSubStep =
     TUTORIAL_STEP_ORDER[currentStep] ===
       TUTORIAL_STEPS.CREATE_CYCLE_SELECT_ACTIVITY && subStep === 7;
@@ -158,8 +162,8 @@ export default function SelectActivity() {
               <S.Img src={"images/img_empty_longBox.webp"} />
               <S.ActivityBox isOpen={false}>
                 <S.ActivityInfo isOpen={false} isChecked={!!selected.length}>
-                  {activities[3].icon}
-                  <S.ActivityTitle>{activities[3].label}</S.ActivityTitle>
+                  {activities[2].icon}
+                  <S.ActivityTitle>{activities[2].label}</S.ActivityTitle>
                   <S.CheckboxWrapper isOpen={false}>
                     <input type="checkbox" id="checkbox" onChange={() => {}} />
                     <label htmlFor="checkbox" />
@@ -180,14 +184,14 @@ export default function SelectActivity() {
             <S.Img src={"images/img_empty_mediumBox.webp"} />
             <S.ActivityBox isOpen>
               <S.ActivityInfo isOpen isChecked>
-                {activities[3].icon}
-                <S.ActivityTitle>{activities[3].label}</S.ActivityTitle>
+                {activities[2].icon}
+                <S.ActivityTitle>{activities[2].label}</S.ActivityTitle>
                 <S.CheckboxWrapper isOpen>
                   <input
                     type="checkbox"
-                    checked={allSelected.includes(activities[3].label)}
+                    checked={allSelected.includes(activities[2].label)}
                     id="checkbox"
-                    onChange={handleAllSelected(activities[3].label)}
+                    onChange={handleAllSelected(activities[2].label)}
                   />
                   <label htmlFor="checkbox" />
                 </S.CheckboxWrapper>
@@ -215,6 +219,9 @@ export default function SelectActivity() {
         ),
       },
     }),
+    ...(isSixthSubStep && {
+      onClick: () => handleSubStepClick(7),
+    }),
     ...(isSeventhSubStep && {
       highlight: {
         selector: ".tutoral_selectActivity_02",
@@ -235,6 +242,7 @@ export default function SelectActivity() {
         isThirdSubStep={isThirdSubStep}
         isFourthSubStep={isFourthSubStep}
         isFifthSubStep={isFifthSubStep}
+        isSixthSubStep={isSixthSubStep}
         data={data}
       />
     </S.Container>
