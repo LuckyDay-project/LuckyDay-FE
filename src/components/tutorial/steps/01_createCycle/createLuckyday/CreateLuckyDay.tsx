@@ -12,15 +12,24 @@ import {
 } from "components";
 import { ArrowIcon } from "assets";
 import { useModal, useToast } from "hooks";
-import { useGetLuckyDaysActivities } from "services";
-import type { CreateLuckyDayForm } from "types";
+import type { ActivitiesServerModel, CreateLuckyDayForm } from "types";
 import * as S from "./CreateLuckyDay.styled";
 
-function CreateLuckyDay() {
+interface CreateLuckyDayProps {
+  isThirdSubStep?: boolean;
+  isFourthSubStep?: boolean;
+  isFifthSubStep?: boolean;
+  data?: ActivitiesServerModel;
+}
+
+function CreateLuckyDay({
+  isThirdSubStep,
+  isFourthSubStep,
+  isFifthSubStep,
+  data,
+}: CreateLuckyDayProps) {
   const [currentProgress, setCurrentProgress] = useState(0);
   const [, setSelectedItems] = useState<number[]>([]);
-
-  const { data } = useGetLuckyDaysActivities();
 
   const { setValue, watch, handleSubmit } = useForm<CreateLuckyDayForm>({
     defaultValues: {
@@ -60,6 +69,9 @@ function CreateLuckyDay() {
             getSelectItems={getSelectItems}
             setValue={setValue}
             watch={watch}
+            isThirdSubStep={isThirdSubStep}
+            isFourthSubStep={isFourthSubStep}
+            isFifthSubStep={isFifthSubStep}
           />
         );
       case 1:

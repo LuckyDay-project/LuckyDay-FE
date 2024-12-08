@@ -11,6 +11,9 @@ import { ActivityToggle } from "./container";
 import * as S from "./SelectActivity.styled";
 
 interface SelectActivityProps {
+  isThirdSubStep?: boolean;
+  isFourthSubStep?: boolean;
+  isFifthSubStep?: boolean;
   data?: ActivitiesServerModel;
   setValue: UseFormSetValue<CreateLuckyDayForm>;
   watch: UseFormWatch<CreateLuckyDayForm>;
@@ -18,6 +21,9 @@ interface SelectActivityProps {
 }
 
 function SelectActivity({
+  isThirdSubStep,
+  isFourthSubStep,
+  isFifthSubStep,
   data,
   getSelectItems,
   watch,
@@ -103,12 +109,17 @@ function SelectActivity({
               data={data?.resData?.find(
                 (item) => item.category === activity.label
               )}
-              checked={watch(`acts.${i}.checked`) ?? false}
+              checked={
+                (watch(`acts.${i}.checked`) || (isFourthSubStep && i === 1)) ??
+                false
+              }
               index={i}
               toggle={toggle}
               isOpen={
                 toggle === activity.label ||
-                (activity.label === toggle && toggle === "+) 직접 입력")
+                (activity.label === toggle && toggle === "+) 직접 입력") ||
+                (((isThirdSubStep && i === 1) || (isFifthSubStep && i === 2)) ??
+                  false)
               }
               handleToggle={handleToggle}
             />

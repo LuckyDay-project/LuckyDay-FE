@@ -112,7 +112,7 @@ export const Activity = styled.button<{ isSelected?: boolean }>`
     width: fit-content;
     border-radius: 30px;
     padding: ${isSelected ? "0 11px 0 6px" : "0 11px"};
-    color: ${!isSelected && theme.colors.gray};
+    color: ${!isSelected ? theme.colors.gray : theme.colors.black};
     background-color: ${isSelected
       ? theme.colors.lightOrange
       : theme.colors.lightBeige};
