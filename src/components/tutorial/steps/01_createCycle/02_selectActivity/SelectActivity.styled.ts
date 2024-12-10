@@ -159,7 +159,7 @@ export const CustomInfo = styled.div<{ isCustom?: boolean }>`
   ${({ theme, isCustom }) => css`
     ${theme.fonts.body1};
     position: absolute;
-    bottom: 60px;
+    bottom: -30px; //NOTE: 확인필요
     left: 0;
     display: ${isCustom ? "flex" : "none"};
     width: 100%;

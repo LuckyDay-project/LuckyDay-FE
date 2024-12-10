@@ -137,6 +137,8 @@ function ActivityToggle({
             ? "tutoral_selectActivity_02"
             : activity.label === "배움과 문화"
             ? "tutoral_selectActivity_05"
+            : activity.label === "+) 직접 입력"
+            ? "tutoral_selectActivity_07"
             : ""
         }
         key={index}

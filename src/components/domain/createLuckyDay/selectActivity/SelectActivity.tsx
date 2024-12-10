@@ -114,6 +114,7 @@ function SelectActivity({
               checked={
                 (watch(`acts.${i}.checked`) ||
                   (isFourthSubStep && i === 1) ||
+                  (isFifthSubStep && i === 1) ||
                   (isSixthSubStep && i === 2) ||
                   (isSixthSubStep && i === 1)) ??
                 false
