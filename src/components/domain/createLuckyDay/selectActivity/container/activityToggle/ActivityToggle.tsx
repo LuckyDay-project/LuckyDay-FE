@@ -14,6 +14,7 @@ interface ActivityToggleProps {
   };
   data?: Activities;
   index: number;
+  isFourthSubStep?: boolean;
   isSixthSubStep?: boolean;
   isOpen: boolean;
   toggle: string | null;
@@ -29,6 +30,7 @@ function ActivityToggle({
   data,
   index,
   checked,
+  isFourthSubStep,
   isSixthSubStep,
   isOpen,
   toggle,
@@ -184,7 +186,11 @@ function ActivityToggle({
 
                   return (
                     <S.Activity
-                      isSelected={isSelected || isSixthSubStep}
+                      isSelected={
+                        isSelected ||
+                        (isFourthSubStep && item.keyword === "치킨") ||
+                        isSixthSubStep
+                      }
                       ref={activityRef}
                       key={item.actNo}
                       onClick={handleItemClick(item.actNo)}

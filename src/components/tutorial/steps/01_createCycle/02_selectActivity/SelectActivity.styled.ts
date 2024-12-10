@@ -103,14 +103,18 @@ export const Activities = styled.div`
   }
 `;
 
-export const Activity = styled.button<{ isSelected?: boolean }>`
-  ${({ theme, isSelected }) => css`
+export const Activity = styled.button<{
+  isClickable?: boolean;
+  isSelected?: boolean;
+}>`
+  ${({ theme, isClickable, isSelected }) => css`
     ${theme.fonts.body1};
     display: flex;
     align-items: center;
     column-gap: 3px;
     width: fit-content;
     border-radius: 30px;
+    border: ${isClickable && `1px solid ${theme.colors.lightOrange}`};
     padding: ${isSelected ? "0 11px 0 6px" : "0 11px"};
     color: ${!isSelected ? theme.colors.gray : theme.colors.black};
     background-color: ${isSelected

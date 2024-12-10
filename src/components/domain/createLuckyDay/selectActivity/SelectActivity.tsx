@@ -121,11 +121,13 @@ function SelectActivity({
               }
               index={i}
               toggle={toggle}
+              isFourthSubStep={isFourthSubStep}
               isSixthSubStep={isSixthSubStep}
               isOpen={
                 toggle === activity.label ||
                 (activity.label === toggle && toggle === "+) 직접 입력") ||
                 (((isThirdSubStep && i === 1) ||
+                  (isFourthSubStep && i === 1) ||
                   ((isFifthSubStep || isSixthSubStep) && i === 2)) ??
                   false)
               }

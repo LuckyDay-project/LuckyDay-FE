@@ -80,6 +80,8 @@ export default function SelectActivity() {
 
       return updated;
     });
+
+    handleSubStepClick(4);
   };
 
   const handleCustomed = (item: string) => () => {
@@ -172,7 +174,6 @@ export default function SelectActivity() {
       },
     }),
     ...(isThirdSubStep && {
-      onClick: () => handleSubStepClick(4),
       highlight: {
         selector: ".tutoral_selectActivity_02",
         component: (
@@ -195,13 +196,12 @@ export default function SelectActivity() {
               </S.ActivityInfo>
               <S.Activities>
                 {data?.resData[2].actList?.map((item) => {
-                  //NOTE: console은 찍히는데 css 동작을 하지 않음 확인 필요
-                  const isSelcted = selected.includes(item.keyword);
-
                   return (
                     <S.Activity
                       key={item.keyword}
-                      isSelected={isSelcted}
+                      isSelected={false}
+                      isClickable={item.keyword === "치킨"}
+                      disabled={item.keyword !== "치킨"}
                       onClick={handleSelected(item.keyword)}
                     >
                       <CheckIcon css={S.icon} />
@@ -261,13 +261,11 @@ export default function SelectActivity() {
               </S.ActivityInfo>
               <S.Activities>
                 {data?.resData[3].actList?.map((item) => {
-                  //NOTE: console은 찍히는데 css 동작을 하지 않음 확인 필요
-                  const isSelcted = selected.includes(item.keyword);
-
                   return (
                     <S.Activity
                       key={item.keyword}
-                      isSelected={isSelcted}
+                      isSelected={false}
+                      disabled
                       onClick={handleSelected(item.keyword)}
                     >
                       <CheckIcon css={S.icon} />
