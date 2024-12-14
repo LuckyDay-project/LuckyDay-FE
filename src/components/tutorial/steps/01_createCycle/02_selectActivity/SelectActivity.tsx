@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import {
   Input,
@@ -142,12 +142,17 @@ export default function SelectActivity() {
 
   useTutorialStep(TUTORIAL_STEPS.CREATE_CYCLE_SELECT_ACTIVITY, {
     position: {
-      top: "17%",
+      top: subStep === 8 ? "80%" : "17%",
     },
     textBoxProps: {
       isClickable:
         subStep !== 2 && subStep !== 4 && subStep !== 5 && subStep !== 7,
-      showNextIcon: subStep === 1 || subStep === 3 || subStep === 6,
+      showNextIcon:
+        subStep === 1 ||
+        subStep === 3 ||
+        subStep === 6 ||
+        subStep === 7 ||
+        subStep === 8,
       onClick: () => handleSubStepClick(8),
     },
     ...(isSecondSubStep && {
@@ -283,13 +288,18 @@ export default function SelectActivity() {
       onClick: () => handleSubStepClick(7),
     }),
     ...(isSeventhSubStep && {
+      onClick: () => handleSubStepClick(8),
       highlight: {
         selector: ".tutoral_selectActivity_07",
         component: (
           <S.ActivityButton isOpen>
-            <S.Img src={"images/img_empty_mediumBox.webp"} />
+            <S.Img src="images/img_empty_mediumBox.webp" />
             <S.ActivityBox isOpen>
-              <S.ActivityInfo isOpen isChecked={false}>
+              <S.ActivityInfo
+                isOpen
+                isChecked={false}
+                onClick={() => handleSubStepClick(8)}
+              >
                 {activities[5].icon}
                 <S.ActivityTitle>{activities[5].label}</S.ActivityTitle>
                 <ArrowIcon css={S.arrowIcon(true)} />
@@ -337,10 +347,7 @@ export default function SelectActivity() {
       },
     }),
     ...(isLastSubStep && {
-      highlight: {
-        selector: ".tutoral_selectActivity_02",
-        component: <div>test</div>,
-      },
+      onClick: () => nextStep(),
     }),
   });
 
@@ -351,6 +358,7 @@ export default function SelectActivity() {
         isFourthSubStep={isFourthSubStep}
         isFifthSubStep={isFifthSubStep}
         isSixthSubStep={isSixthSubStep}
+        isSeventhSubStep={isSeventhSubStep}
         data={data}
       />
     </S.Container>

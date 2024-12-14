@@ -222,7 +222,7 @@ function ActivityToggle({
                     return (
                       <S.CustomActivity
                         ref={activityRef}
-                        key={`${item + i}`}
+                        key={item + i}
                         isSelected
                         hasValue
                         onClick={handleStopPropagation}

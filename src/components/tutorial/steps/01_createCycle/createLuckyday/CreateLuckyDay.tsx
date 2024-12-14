@@ -20,6 +20,7 @@ interface CreateLuckyDayProps {
   isFourthSubStep?: boolean;
   isFifthSubStep?: boolean;
   isSixthSubStep?: boolean;
+  isSeventhSubStep?: boolean;
   data?: ActivitiesServerModel;
 }
 
@@ -28,6 +29,7 @@ function CreateLuckyDay({
   isFourthSubStep,
   isFifthSubStep,
   isSixthSubStep,
+  isSeventhSubStep,
   data,
 }: CreateLuckyDayProps) {
   const [currentProgress, setCurrentProgress] = useState(0);
@@ -75,6 +77,7 @@ function CreateLuckyDay({
             isFourthSubStep={isFourthSubStep}
             isFifthSubStep={isFifthSubStep}
             isSixthSubStep={isSixthSubStep}
+            isSeventhSubStep={isSeventhSubStep}
           />
         );
       case 1:
