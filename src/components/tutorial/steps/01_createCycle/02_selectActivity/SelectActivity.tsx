@@ -295,7 +295,6 @@ export default function SelectActivity() {
       onClick: () => handleSubStepClick(7),
     }),
     ...(isSeventhSubStep && {
-      onClick: () => handleSubStepClick(8),
       highlight: {
         selector: ".tutoral_selectActivity_07",
         component: (
