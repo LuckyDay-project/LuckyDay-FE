@@ -6,7 +6,7 @@ export const CreateLuckyDay = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 20px;
+  margin: 50px;
 `;
 
 export const ButtonWrapper = styled.div`

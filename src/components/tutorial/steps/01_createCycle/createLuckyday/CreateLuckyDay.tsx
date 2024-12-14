@@ -21,6 +21,7 @@ interface CreateLuckyDayProps {
   isFifthSubStep?: boolean;
   isSixthSubStep?: boolean;
   isSeventhSubStep?: boolean;
+  nextProgress?: number;
   data?: ActivitiesServerModel;
 }
 
@@ -30,6 +31,7 @@ function CreateLuckyDay({
   isFifthSubStep,
   isSixthSubStep,
   isSeventhSubStep,
+  nextProgress,
   data,
 }: CreateLuckyDayProps) {
   const [currentProgress, setCurrentProgress] = useState(0);
@@ -128,6 +130,8 @@ function CreateLuckyDay({
     );
   }, [data]);
 
+  console.log(nextProgress);
+
   return (
     <ButtonLayout
       variant="hasIcon"
@@ -138,8 +142,8 @@ function CreateLuckyDay({
       handleClickSecondButton={handleClickNextButton}
     >
       <S.CreateLuckyDay>
-        <ProgressBar progressState={currentProgress} />
-        {changePage(currentProgress)}
+        <ProgressBar progressState={nextProgress ?? currentProgress} />
+        {changePage(nextProgress ?? currentProgress)}
       </S.CreateLuckyDay>
     </ButtonLayout>
   );

@@ -2,13 +2,20 @@ import { useRef, useState } from "react";
 
 import {
   Input,
+  SvgFrame,
   TUTORIAL_STEP_ORDER,
   TUTORIAL_STEPS,
   useTutorial,
   useTutorialStep,
 } from "components";
 import { useToast } from "hooks";
-import { activities, ArrowIcon, CheckIcon, CloseIcon } from "assets";
+import {
+  activities,
+  ArrowIcon,
+  CheckIcon,
+  CloseIcon,
+  ShortBoxIcon,
+} from "assets";
 import { useGetLuckyDaysActivities } from "services";
 import CreateLuckyDay from "../createLuckyday/CreateLuckyDay";
 import * as S from "./SelectActivity.styled";
@@ -146,13 +153,13 @@ export default function SelectActivity() {
     },
     textBoxProps: {
       isClickable:
-        subStep !== 2 && subStep !== 4 && subStep !== 5 && subStep !== 7,
+        subStep !== 2 &&
+        subStep !== 4 &&
+        subStep !== 5 &&
+        subStep !== 7 &&
+        subStep !== 8,
       showNextIcon:
-        subStep === 1 ||
-        subStep === 3 ||
-        subStep === 6 ||
-        subStep === 7 ||
-        subStep === 8,
+        subStep === 1 || subStep === 3 || subStep === 6 || subStep === 7,
       onClick: () => handleSubStepClick(8),
     },
     ...(isSecondSubStep && {
@@ -347,18 +354,31 @@ export default function SelectActivity() {
       },
     }),
     ...(isLastSubStep && {
-      onClick: () => nextStep(),
+      highlight: {
+        selector: ".button",
+        component: (
+          <S.ButtonWrapper>
+            <S.Button onClick={nextStep}>
+              <SvgFrame css={S.beigeIcon} icon={<ShortBoxIcon />} />
+              <S.ButtonBox>
+                next <ArrowIcon css={S.buttonArrowIcon} />
+              </S.ButtonBox>
+            </S.Button>
+          </S.ButtonWrapper>
+        ),
+      },
     }),
   });
 
   return (
-    <S.Container>
+    <S.Container className={isLastSubStep ? "button" : ""}>
       <CreateLuckyDay
         isThirdSubStep={isThirdSubStep}
         isFourthSubStep={isFourthSubStep}
         isFifthSubStep={isFifthSubStep}
         isSixthSubStep={isSixthSubStep}
         isSeventhSubStep={isSeventhSubStep}
+        nextProgress={0}
         data={data}
       />
     </S.Container>
