@@ -88,6 +88,8 @@ export default function TutorialProvider({ children }: TutorialProviderProps) {
       }
       return next;
     });
+
+    setSubStep(1);
   }, [endTutorial]);
 
   const handleSubStepClick = useCallback(
