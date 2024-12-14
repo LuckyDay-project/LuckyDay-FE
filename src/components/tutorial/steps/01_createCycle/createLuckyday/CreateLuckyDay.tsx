@@ -21,6 +21,7 @@ interface CreateLuckyDayProps {
   isFifthSubStep?: boolean;
   isSixthSubStep?: boolean;
   isSeventhSubStep?: boolean;
+  isDateLastSubStep?: boolean;
   nextProgress?: number;
   data?: ActivitiesServerModel;
 }
@@ -31,6 +32,7 @@ function CreateLuckyDay({
   isFifthSubStep,
   isSixthSubStep,
   isSeventhSubStep,
+  isDateLastSubStep,
   nextProgress,
   data,
 }: CreateLuckyDayProps) {
@@ -83,7 +85,13 @@ function CreateLuckyDay({
           />
         );
       case 1:
-        return <SelectPeriod setValue={setValue} watch={watch} />;
+        return (
+          <SelectPeriod
+            isLastSubStep={isDateLastSubStep ?? false}
+            setValue={setValue}
+            watch={watch}
+          />
+        );
       case 2:
         return <SelectCount setValue={setValue} watch={watch} />;
       case 3:
@@ -129,8 +137,6 @@ function CreateLuckyDay({
         .filter(({ category }) => category !== "직접 입력")
     );
   }, [data]);
-
-  console.log(nextProgress);
 
   return (
     <ButtonLayout

@@ -7,11 +7,12 @@ import type { CreateLuckyDayForm } from "types";
 import * as S from "./SelectPeriod.styled";
 
 interface SelectPeriodProps {
+  isLastSubStep: boolean;
   watch: UseFormWatch<CreateLuckyDayForm>;
   setValue: UseFormSetValue<CreateLuckyDayForm>;
 }
 
-function SelectPeriod({ watch, setValue }: SelectPeriodProps) {
+function SelectPeriod({ isLastSubStep, watch, setValue }: SelectPeriodProps) {
   const selectPeriod = LUCKYDAY_PERIODS.find(
     (item) => item.period === watch("period")
   );
@@ -38,11 +39,15 @@ function SelectPeriod({ watch, setValue }: SelectPeriodProps) {
       <S.PeriodWrapper>
         {LUCKYDAY_PERIODS.map((period) => (
           <S.ActivityButton
+            className={period.period === 30 ? "period" : ""}
             key={period.label}
             onClick={handleSelectPeriod(period.label)}
           >
             <SvgFrame
-              css={S.icon(watch("period") === period.period)}
+              css={S.icon(
+                watch("period") === period.period ||
+                  (isLastSubStep && period.period === 30)
+              )}
               icon={<LongBoxIcon />}
             />
             <S.ActivityInfo>
