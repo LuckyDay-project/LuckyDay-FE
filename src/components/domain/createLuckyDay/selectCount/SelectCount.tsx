@@ -8,11 +8,20 @@ import type { CreateLuckyDayForm } from "types";
 import * as S from "./SelectCount.styled";
 
 interface SelectCountProps {
+  selectableDate: number;
+  isCountFirstSubStep?: boolean;
+  isCountLastSubStep?: boolean;
   watch: UseFormWatch<CreateLuckyDayForm>;
   setValue: UseFormSetValue<CreateLuckyDayForm>;
 }
 
-function SelectCount({ watch, setValue }: SelectCountProps) {
+function SelectCount({
+  selectableDate,
+  isCountFirstSubStep,
+  isCountLastSubStep,
+  watch,
+  setValue,
+}: SelectCountProps) {
   const { addToast } = useToast();
 
   const selectedPeriod = LUCKYDAY_PERIODS.find(
@@ -40,16 +49,20 @@ function SelectCount({ watch, setValue }: SelectCountProps) {
         <span>배정을 원하는 럭키 데이 개수를 선택하세요.</span>
         <S.SubHeadLine>
           {dayjs().format("YYYY년 MM월 DD일")} 오늘로부터{" "}
-          <strong>{selectedPeriod?.period ?? 0}일</strong>
+          <strong>{selectableDate ?? selectedPeriod?.period ?? 0}일</strong>
           동안
         </S.SubHeadLine>
       </S.HeadLine>
-      <S.SelectDatesWrapper>
+      <S.SelectDatesWrapper
+        className={isCountFirstSubStep ? "selectCount" : ""}
+      >
         <S.SelectDatesButton onClick={handleSelectCounts(-1)}>
           <SvgFrame css={S.svgFrame} icon={<CircleBoxIcon />} />
           <MinusIcon css={S.icon} />
         </S.SelectDatesButton>
-        <S.SelectDatesBox>{watch("cnt")}</S.SelectDatesBox>
+        <S.SelectDatesBox>
+          {isCountLastSubStep ? 2 : watch("cnt")}
+        </S.SelectDatesBox>
         <S.SelectDatesButton onClick={handleSelectCounts(+1)}>
           <SvgFrame css={S.svgFrame} icon={<CircleBoxIcon />} />
           <PlusIcon css={S.icon} />

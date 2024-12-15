@@ -22,7 +22,10 @@ interface CreateLuckyDayProps {
   isSixthSubStep?: boolean;
   isSeventhSubStep?: boolean;
   isDateLastSubStep?: boolean;
+  isCountFirstSubStep?: boolean;
+  isCountLastSubStep?: boolean;
   nextProgress?: number;
+  selectableDate?: number;
   data?: ActivitiesServerModel;
 }
 
@@ -33,7 +36,10 @@ function CreateLuckyDay({
   isSixthSubStep,
   isSeventhSubStep,
   isDateLastSubStep,
+  isCountFirstSubStep,
+  isCountLastSubStep,
   nextProgress,
+  selectableDate,
   data,
 }: CreateLuckyDayProps) {
   const [currentProgress, setCurrentProgress] = useState(0);
@@ -93,7 +99,15 @@ function CreateLuckyDay({
           />
         );
       case 2:
-        return <SelectCount setValue={setValue} watch={watch} />;
+        return (
+          <SelectCount
+            selectableDate={selectableDate ?? 0}
+            isCountFirstSubStep={isCountFirstSubStep}
+            isCountLastSubStep={isCountLastSubStep}
+            setValue={setValue}
+            watch={watch}
+          />
+        );
       case 3:
         return <SelectExceptDate setValue={setValue} watch={watch} />;
     }
