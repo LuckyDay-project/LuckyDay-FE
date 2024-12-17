@@ -25,6 +25,7 @@ const Calendar = ({
     currentMonth,
     monthsData,
     disabled,
+    emptyDates,
     calendarList,
     handleMoveToPrevMonth,
     handleMoveToNextMonth,
@@ -65,7 +66,7 @@ const Calendar = ({
               return (
                 <S.DayButton
                   className={
-                    isThisMonth && formattedDate.split("-")[2] === "12"
+                    isThisMonth && i === 12 + emptyDates.length + 2
                       ? "calendar"
                       : ""
                   }

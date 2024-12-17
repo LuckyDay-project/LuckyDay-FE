@@ -79,8 +79,6 @@ function CreateLuckyDayPage() {
       .filter(({ actList }) => !!actList)
       .flatMap((item) => item.actList);
 
-    console.log(emptyActList);
-
     if (
       currentProgress === 0 &&
       !emptyActList?.length &&

@@ -81,6 +81,7 @@ const useCalendar = (
     currentMonth,
     monthsData,
     disabled,
+    emptyDates,
     calendarList,
     handleMoveToPrevMonth,
     handleMoveToNextMonth,
