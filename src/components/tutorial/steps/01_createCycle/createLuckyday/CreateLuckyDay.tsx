@@ -26,6 +26,7 @@ interface CreateLuckyDayProps {
   isCountLastSubStep?: boolean;
   isDatesFirstSubStep?: boolean;
   isDatesLastSubStep?: boolean;
+  isConfirmLastSubStep?: boolean;
   nextProgress?: number;
   selectableDate?: number;
   data?: ActivitiesServerModel;
@@ -42,6 +43,7 @@ function CreateLuckyDay({
   isCountLastSubStep,
   isDatesFirstSubStep,
   isDatesLastSubStep,
+  isConfirmLastSubStep,
   nextProgress,
   selectableDate,
   data,
@@ -116,7 +118,7 @@ function CreateLuckyDay({
         return (
           <SelectExceptDate
             isDatesFirstSubStep={isDatesFirstSubStep}
-            isDatesLastSubStep={isDatesLastSubStep}
+            isDatesLastSubStep={isDatesLastSubStep || isConfirmLastSubStep}
             setValue={setValue}
             watch={watch}
           />
@@ -144,7 +146,11 @@ function CreateLuckyDay({
     if (currentProgress !== 3) return changeCurrentProgress(+1)();
 
     handleOpenModal(
-      <CreateLuckyDayModal watch={watch} handleSubmit={handleSubmit} />
+      <CreateLuckyDayModal
+        className={isConfirmLastSubStep ? "confirm" : ""}
+        watch={watch}
+        handleSubmit={handleSubmit}
+      />
     );
   };
 

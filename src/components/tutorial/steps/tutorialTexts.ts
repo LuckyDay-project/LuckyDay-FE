@@ -36,7 +36,7 @@ export const TUTORIAL_TEXTS: TutorialTextType = {
     "1": `선약이 있는 12일은 럭키데이를 받지 않고 싶어요.<br/><br/>아래 날짜를 클릭해주세요.`,
     "2": `좋아요! 이제 럭키데이를 생성할 수 있어요!`,
   },
-  [TUTORIAL_STEPS.CREATE_CYCLE_CONFIRM]: `먼저, 다양한 활동 중<br />원하는 것을 선택하거나 직접 입력할 수 있어요.`,
+  [TUTORIAL_STEPS.CREATE_CYCLE_CONFIRM]: `럭키보드로 이동해서 확인해볼까요?`,
 
   [TUTORIAL_STEPS.CHECK_AFTER_BOARD]: {
     "1": `짜잔~! 럭키 보드가 채워졌어요!<br />

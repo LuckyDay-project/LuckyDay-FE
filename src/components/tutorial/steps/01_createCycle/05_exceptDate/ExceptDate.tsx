@@ -27,7 +27,7 @@ export default function ExceptDate() {
     textBoxProps: {
       isClickable: false,
       showNextIcon: false,
-      onClick: () => handleSubStepClick(2),
+      onClick: () => handleSubStepClick(1),
     },
     ...(isFirstSubStep && {
       highlight: {
