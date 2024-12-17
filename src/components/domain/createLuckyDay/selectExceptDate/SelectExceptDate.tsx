@@ -8,12 +8,22 @@ import type { CreateLuckyDayForm } from "types";
 import * as S from "./SelectExceptDate.styled";
 
 interface SelectExceptDateProps {
+  isDatesFirstSubStep?: boolean;
+  isDatesLastSubStep?: boolean;
   watch: UseFormWatch<CreateLuckyDayForm>;
   setValue: UseFormSetValue<CreateLuckyDayForm>;
 }
 
-function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
+function SelectExceptDate({
+  isDatesFirstSubStep,
+  isDatesLastSubStep,
+  watch,
+  setValue,
+}: SelectExceptDateProps) {
   const [expDates, setExpDates] = useState<string[]>([]);
+
+  //tutorial 용 변수
+  const isThisMonth = isDatesFirstSubStep || isDatesLastSubStep;
 
   const selectedPeriod = `${watch("period") || "0"}`;
   const availableExpDates = LUCKYDAY_PERIODS.find(
@@ -53,12 +63,15 @@ function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
         {dayjs().format("YYYY년 MM월 DD일")} ~ {EndOfDate}
       </S.SubHeadLine>
       <Calendar
-        dates={selectedPeriod}
+        isThisMonth={isThisMonth}
+        isDatesLastSubStep={isDatesLastSubStep}
+        dates={isThisMonth ? "30" : selectedPeriod}
         expDates={expDates}
         makeExpDates={makeExpDates}
       />
       <S.SelectInfo>
-        최대 <strong>{availableExpDates}개</strong>의 날짜를 제외할 수 있어요.
+        최대 <strong>{isThisMonth ? 4 : availableExpDates}개</strong>의 날짜를
+        제외할 수 있어요.
       </S.SelectInfo>
     </>
   );

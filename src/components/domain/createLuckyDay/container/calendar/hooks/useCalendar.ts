@@ -5,6 +5,8 @@ import { useToast } from "hooks";
 import { LUCKYDAY_PERIODS } from "assets";
 
 const useCalendar = (
+  isThisMonth: boolean,
+  isSelectable12th: boolean,
   dates: string,
   expDates: string[],
   makeExpDates: (dates: string) => void
@@ -17,6 +19,7 @@ const useCalendar = (
 
   const daysInMonth = currentMonth.daysInMonth();
   const firstDayOfMonth = dayjs(currentMonth).startOf("month").locale("ko");
+
   const currentDate = dayjs(dayjs()).add(+period, "day");
   const existDates = Array.from({ length: daysInMonth }, (_, index) =>
     dayjs(firstDayOfMonth).add(index, "day")
@@ -67,6 +70,12 @@ const useCalendar = (
   useEffect(() => {
     setPeriod(dates);
   }, [dates]);
+
+  useEffect(() => {
+    if (!isSelectable12th) return;
+
+    setCurrentMonth(dayjs(currentMonth.add(1, "month")));
+  }, [isThisMonth]);
 
   return {
     currentMonth,
