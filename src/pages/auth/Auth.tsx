@@ -33,14 +33,14 @@ export default function Auth() {
       window.location.reload();
     }
   }, [
-    email,
-    navigate,
-    nickname,
     token,
+    email,
+    nickname,
     profileNumber,
     hasLuckyday,
     isExperienced,
     expirationTime,
+    navigate,
   ]);
 
   useEffect(() => {

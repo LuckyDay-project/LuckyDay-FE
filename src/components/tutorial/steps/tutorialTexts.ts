@@ -8,7 +8,7 @@ export const TUTORIAL_TEXTS: TutorialTextType = {
   [TUTORIAL_STEPS.WELCOME]: `안녕하세요! <br />
             럭키 데이에 오신 것을 환영해요. <br /> <br />
             제가 럭키 데이를 만드는 방법을 보여드릴까요? <br />
-            아래 버튼을 한 번 더 클릭해 보세요.`,
+            말풍선을 누르면 튜토리얼을 시작할 수 있어요.`,
 
   [TUTORIAL_STEPS.CREATE_CYCLE_BEFORE_BOARD]: `지금은 럭키보드가 비어있어요.<br />
             아래 플러스 버튼을 클릭하면<br />
@@ -60,5 +60,5 @@ export const TUTORIAL_TEXTS: TutorialTextType = {
   [TUTORIAL_STEPS.FINISH]: `저와 함께해 주셔서 감사해요!<br /><br />
             이제 여러분만의<br />
             럭키 데이를 즐길 시간이에요.<br />
-            <br />아래 로그인 버튼을 클릭하면 시작할 수 있어요.`,
+            <br />로그인 버튼을 눌러 럭키데이를 시작해 보세요!`,
 };

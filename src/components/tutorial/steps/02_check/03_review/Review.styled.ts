@@ -5,7 +5,10 @@ export const Container = styled(S.Container)`
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  padding-top: 0;
+
+  @media (min-height: 945px) {
+    min-height: 90vh;
+  }
 `;
 
 export const ReviewBox = styled(S.ReviewBox)``;

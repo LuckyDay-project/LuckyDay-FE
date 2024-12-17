@@ -14,7 +14,7 @@ export default function ViewActivity() {
 
   useTutorialStep(TUTORIAL_STEPS.CHECK_VIEW_ACTIVITY, {
     position: {
-      top: "20%",
+      top: "18%",
     },
     textBoxProps: {
       isClickable: false,
@@ -34,25 +34,23 @@ export default function ViewActivity() {
 
   return (
     <S.Container>
-      <S.ViewActivity>
-        <S.LuckydayInfo>
-          <span>{dayjs().format("YYYY-MM-DD")}</span>
-          <span>오늘의 럭키 데이 활동은...</span>
-        </S.LuckydayInfo>
-        <S.LuckydayDetailInfo isLongText={false}>
-          <S.Img src="/images/img_luckydayBg.webp" alt="luckydayActivity" />
-          <BookIcon />
-          <p>혼자 영화관 가기</p>
-          <p>
-            보고 싶었던 영화를 보러 혼자 영화관에 가 보세요. <br />
-            푹신한 의자에 몸을 기대고, <br />
-            화면에 펼쳐지는 이야기에 푹 빠져 보세요. <br />
-            마음껏 울고 웃으면서, <br />
-            영화에 온전히 집중해봐요!
-          </p>
-        </S.LuckydayDetailInfo>
-        <div className="record-button" />
-      </S.ViewActivity>
+      <S.LuckydayInfo>
+        <span>{dayjs().format("YYYY-MM-DD")}</span>
+        <span>오늘의 럭키 데이 활동은...</span>
+      </S.LuckydayInfo>
+      <S.LuckydayDetailInfo isLongText={false}>
+        <S.Img src="/images/img_luckydayBg.webp" alt="luckydayActivity" />
+        <BookIcon />
+        <p>혼자 영화관 가기</p>
+        <p>
+          보고 싶었던 영화를 보러 혼자 영화관에 가 보세요. <br />
+          푹신한 의자에 몸을 기대고, <br />
+          화면에 펼쳐지는 이야기에 푹 빠져 보세요. <br />
+          마음껏 울고 웃으면서, <br />
+          영화에 온전히 집중해봐요!
+        </p>
+      </S.LuckydayDetailInfo>
+      <div className="record-button" />
       <BackButton />
     </S.Container>
   );

@@ -7,6 +7,7 @@ export default function Welcome() {
     },
     textBoxProps: {
       isClickable: true,
+      showNextIcon: true,
     },
   });
 

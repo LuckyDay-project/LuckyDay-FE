@@ -3,23 +3,23 @@ import styled from "@emotion/styled";
 import * as S from "pages/viewLuckyActivity/ViewLuckyActivityPage.styled";
 
 export const Container = styled.div`
-  position: relative;
-  width: 100%;
-  min-height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-`;
-
-export const ViewActivity = styled(S.ViewLuckyActivityPage)`
-  position: relative;
+  justify-content: center;
+  text-align: center;
+  min-height: 83vh;
   width: 100%;
-  height: 50vh;
-  margin-bottom: 25%;
+
+  @media (min-height: 945px) {
+    min-height: 90vh;
+  }
 `;
 
 export const LuckydayDetailInfo = styled(S.LuckydayDetailInfo)`
+  height: auto;
+  min-height: 350px;
+
   p:last-of-type {
     white-space: pre-line;
     width: 100%;
@@ -27,28 +27,29 @@ export const LuckydayDetailInfo = styled(S.LuckydayDetailInfo)`
 `;
 
 export const ButtonContainer = styled.div`
-  position: absolute;
-  bottom: -40px;
-  left: 0;
-  right: 0;
+  position: relative;
   display: flex;
+  align-items: center;
   justify-content: center;
+  margin-top: 25px;
+  width: 100%;
 `;
 
-export const Button = styled(S.Button)`
+export const Button = styled.button`
   ${({ theme }) => css`
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100px;
+    height: 42px;
 
     & > span {
       position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 100%;
-      text-align: center;
       ${theme.fonts.headline2};
     }
 
@@ -58,11 +59,6 @@ export const Button = styled(S.Button)`
     }
   `}
 `;
-
-export const Img = styled(S.Img)``;
-export const LuckydayInfo = styled(S.LuckydayInfo)``;
-export const svgFrame = S.svgFrame;
-export const HighlightButtonWrapper = styled(ButtonContainer)``;
 
 export const BackButton = styled.button`
   position: absolute;
@@ -87,3 +83,8 @@ export const arrowIcon = css`
   width: 24px;
   height: 24px;
 `;
+
+export const Img = styled(S.Img)``;
+export const LuckydayInfo = styled(S.LuckydayInfo)``;
+export const svgFrame = S.svgFrame;
+export const HighlightButtonWrapper = styled(ButtonContainer)``;

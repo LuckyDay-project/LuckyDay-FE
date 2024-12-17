@@ -13,10 +13,12 @@ export default function NoticeListPage() {
     <SingleButtonLayout>
       <S.TitleBox>공지사항</S.TitleBox>
       <S.ContentsBox>
-        <S.MenuBox onClick={() => handleMoveToNoticeDetail("3")}>
+        {/* NOTE: 튜토리얼 기능 추가 후 주석 해제 */}
+
+        {/* <S.MenuBox onClick={() => handleMoveToNoticeDetail("3")}>
           튜토리얼 기능이 추가되었어요.
           <S.DateBox>2024년 11월 12일</S.DateBox>
-        </S.MenuBox>
+        </S.MenuBox> */}
         <S.MenuBox onClick={() => handleMoveToNoticeDetail("2")}>
           럭키데이 서비스의 만족도를 평가해 주세요.
           <S.DateBox>2024년 07월 01일</S.DateBox>

@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 export default function Review() {
   useTutorialStep(TUTORIAL_STEPS.CHECK_REVIEW, {
     position: {
-      top: "19%",
+      top: "17%",
     },
     textBoxProps: {
       isClickable: true,
