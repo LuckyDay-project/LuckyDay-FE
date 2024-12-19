@@ -153,13 +153,8 @@ export default function SelectActivity() {
     },
     textBoxProps: {
       isClickable:
-        subStep !== 2 &&
-        subStep !== 4 &&
-        subStep !== 5 &&
-        subStep !== 7 &&
-        subStep !== 8,
-      showNextIcon:
-        subStep === 1 || subStep === 3 || subStep === 6 || subStep === 7,
+        subStep !== 2 && subStep !== 4 && subStep !== 5 && subStep !== 8,
+      showNextIcon: subStep === 1 || subStep === 6 || subStep === 7,
       onClick: () => handleSubStepClick(8),
     },
     ...(isSecondSubStep && {
@@ -173,8 +168,13 @@ export default function SelectActivity() {
                 <S.ActivityInfo isOpen={false} isChecked>
                   {activities[1].icon}
                   <S.ActivityTitle>{activities[1].label}</S.ActivityTitle>
-                  <S.CheckboxWrapper isOpen={false}>
-                    <input type="checkbox" id="checkbox" onChange={() => {}} />
+                  <S.CheckboxWrapper isOpen={false} isDisabled>
+                    <input
+                      type="checkbox"
+                      id="checkbox"
+                      checked={false}
+                      onChange={() => {}}
+                    />
                     <label htmlFor="checkbox" />
                   </S.CheckboxWrapper>
                   <ArrowIcon css={S.arrowIcon(false)} />
@@ -195,10 +195,11 @@ export default function SelectActivity() {
               <S.ActivityInfo isOpen isChecked>
                 {activities[1].icon}
                 <S.ActivityTitle>{activities[1].label}</S.ActivityTitle>
-                <S.CheckboxWrapper isOpen>
+                <S.CheckboxWrapper isOpen isDisabled>
                   <input
                     type="checkbox"
                     checked={false}
+                    disabled
                     id="checkbox"
                     onChange={() => {}}
                   />
@@ -238,8 +239,13 @@ export default function SelectActivity() {
                 <S.ActivityInfo isOpen={false} isChecked>
                   {activities[2].icon}
                   <S.ActivityTitle>{activities[2].label}</S.ActivityTitle>
-                  <S.CheckboxWrapper isOpen={false}>
-                    <input type="checkbox" id="checkbox" onChange={() => {}} />
+                  <S.CheckboxWrapper isOpen={false} isDisabled>
+                    <input
+                      type="checkbox"
+                      id="checkbox"
+                      checked={false}
+                      onChange={() => {}}
+                    />
                     <label htmlFor="checkbox" />
                   </S.CheckboxWrapper>
                   <ArrowIcon css={S.arrowIcon(false)} />
@@ -260,7 +266,7 @@ export default function SelectActivity() {
               <S.ActivityInfo isOpen isChecked>
                 {activities[2].icon}
                 <S.ActivityTitle>{activities[2].label}</S.ActivityTitle>
-                <S.CheckboxWrapper isOpen>
+                <S.CheckboxWrapper isOpen isDisabled={false}>
                   <input
                     type="checkbox"
                     checked={allSelected.includes(activities[2].label)}
@@ -298,14 +304,10 @@ export default function SelectActivity() {
       highlight: {
         selector: ".tutoral_selectActivity_07",
         component: (
-          <S.ActivityButton isOpen>
+          <S.ActivityButton isOpen isDisabled>
             <S.Img src="images/img_empty_mediumBox.webp" />
             <S.ActivityBox isOpen>
-              <S.ActivityInfo
-                isOpen
-                isChecked={false}
-                onClick={() => handleSubStepClick(8)}
-              >
+              <S.ActivityInfo isOpen isChecked={false}>
                 {activities[5].icon}
                 <S.ActivityTitle>{activities[5].label}</S.ActivityTitle>
                 <ArrowIcon css={S.arrowIcon(true)} />
@@ -377,6 +379,7 @@ export default function SelectActivity() {
         isFifthSubStep={isFifthSubStep}
         isSixthSubStep={isSixthSubStep}
         isSeventhSubStep={isSeventhSubStep}
+        isActivityLastSubStep={isLastSubStep}
         nextProgress={0}
         data={data}
       />

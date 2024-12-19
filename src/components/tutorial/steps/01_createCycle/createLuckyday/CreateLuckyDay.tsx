@@ -27,6 +27,7 @@ interface CreateLuckyDayProps {
   isDatesFirstSubStep?: boolean;
   isDatesLastSubStep?: boolean;
   isConfirmLastSubStep?: boolean;
+  isActivityLastSubStep?: boolean;
   nextProgress?: number;
   selectableDate?: number;
   data?: ActivitiesServerModel;
@@ -44,6 +45,7 @@ function CreateLuckyDay({
   isDatesFirstSubStep,
   isDatesLastSubStep,
   isConfirmLastSubStep,
+  isActivityLastSubStep,
   nextProgress,
   selectableDate,
   data,
@@ -94,6 +96,7 @@ function CreateLuckyDay({
             isFifthSubStep={isFifthSubStep}
             isSixthSubStep={isSixthSubStep}
             isSeventhSubStep={isSeventhSubStep}
+            isLastSubStep={isActivityLastSubStep}
           />
         );
       case 1:

@@ -11,11 +11,15 @@ export const ActivitiesRow = styled.div`
   align-items: center;
 `;
 
-export const ActivityButton = styled.div<{ isOpen: boolean }>`
-  ${({ isOpen }) => css`
+export const ActivityButton = styled.div<{
+  isOpen: boolean;
+  isDisabled?: boolean;
+}>`
+  ${({ isOpen, isDisabled }) => css`
     position: relative;
     width: ${isOpen ? "382px" : "368px"};
     height: fit-content;
+    cursor: ${isDisabled && "not-allowed"};
 
     @media (max-width: 380px) {
       width: ${isOpen ? "328px" : "328px"};
@@ -112,19 +116,25 @@ export const Activity = styled.button<{
     column-gap: 3px;
     width: fit-content;
     border-radius: 30px;
-    border: ${isClickable && `1px solid ${theme.colors.lightOrange}`};
     padding: ${isSelected ? "0 11px 0 6px" : "0 11px"};
-    color: ${!isSelected ? theme.colors.gray : theme.colors.black};
+    //TODO: 선택 불가능한 버튼 disabled 효과 추가 필요(현재 임시컬러)
+    color: ${isSelected
+      ? theme.colors.black
+      : !isClickable
+      ? theme.colors.lightGray
+      : theme.colors.gray};
     background-color: ${isSelected
       ? theme.colors.lightOrange
-      : theme.colors.lightBeige};
+      : isClickable
+      ? theme.colors.lightBeige
+      : theme.colors.gray};
 
     svg {
       display: ${!isSelected && "none"};
     }
 
     &:hover {
-      color: ${theme.colors.orange};
+      color: ${isClickable && theme.colors.orange};
 
       & > svg > path {
         fill: ${theme.colors.orange};
@@ -191,9 +201,12 @@ export const AddButton = styled.button`
 `;
 
 export const CustomActivity = styled(Activity)<{ hasValue?: boolean }>`
-  ${({ hasValue }) => css`
+  ${({ hasValue, isSelected, theme }) => css`
     height: 20px;
     padding: ${hasValue && "0 6px 0 11px"};
+    background-color: ${isSelected
+      ? theme.colors.lightOrange
+      : theme.colors.lightBeige};
 
     svg {
       width: 15px;
@@ -211,8 +224,11 @@ export const CustomActivityWrapper = styled.div`
   overflow-y: auto;
 `;
 
-export const CheckboxWrapper = styled.div<{ isOpen: boolean }>`
-  ${({ isOpen }) => css`
+export const CheckboxWrapper = styled.div<{
+  isOpen: boolean;
+  isDisabled: boolean;
+}>`
+  ${({ isOpen, isDisabled }) => css`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -228,7 +244,7 @@ export const CheckboxWrapper = styled.div<{ isOpen: boolean }>`
           ? `url("images/ic_uncheckedOrange.svg")`
           : `url("images/ic_uncheckedBeige.svg")`}
         no-repeat;
-      cursor: pointer;
+      cursor: ${isDisabled ? "not-allowed" : "pointer"};
     }
     input:checked + label {
       width: 24px;

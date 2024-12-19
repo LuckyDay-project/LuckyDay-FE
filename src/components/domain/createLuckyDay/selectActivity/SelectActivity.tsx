@@ -16,6 +16,7 @@ interface SelectActivityProps {
   isFifthSubStep?: boolean;
   isSixthSubStep?: boolean;
   isSeventhSubStep?: boolean;
+  isLastSubStep?: boolean;
   data?: ActivitiesServerModel;
   setValue: UseFormSetValue<CreateLuckyDayForm>;
   watch: UseFormWatch<CreateLuckyDayForm>;
@@ -28,6 +29,7 @@ function SelectActivity({
   isFifthSubStep,
   isSixthSubStep,
   isSeventhSubStep,
+  isLastSubStep,
   data,
   getSelectItems,
   watch,
@@ -79,6 +81,13 @@ function SelectActivity({
     setValue("acts", acts.reverse());
   };
 
+  const isAllChecked =
+    isFourthSubStep ||
+    isFifthSubStep ||
+    isSixthSubStep ||
+    isSeventhSubStep ||
+    isLastSubStep;
+
   return (
     <>
       <S.HeadLineWrapper>
@@ -88,11 +97,11 @@ function SelectActivity({
           럭키 데이 활동을 모두 골라 보세요.
         </S.HeadLine>
         <S.Button
-          isNotChecked={currentActsUnChecked?.length === 5}
+          isNotChecked={currentActsUnChecked?.length === 5 && !isAllChecked}
           onClick={handleCheckAllBoxes}
         >
           <CheckIcon css={S.icon} />
-          {currentActsUnChecked?.length === 5 ? (
+          {currentActsUnChecked?.length === 5 && !isAllChecked ? (
             <span>모두 선택</span>
           ) : (
             <span>전체 해제</span>
@@ -118,7 +127,9 @@ function SelectActivity({
                   (isFourthSubStep && i === 1) ||
                   (isFifthSubStep && i === 1) ||
                   (isSixthSubStep && i === 2) ||
-                  (isSixthSubStep && i === 1)) ??
+                  (isSixthSubStep && i === 1) ||
+                  ((isSeventhSubStep || isLastSubStep) &&
+                    (i === 1 || i === 2))) ??
                 false
               }
               index={i}
