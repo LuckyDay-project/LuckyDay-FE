@@ -8,7 +8,7 @@ import type { CreateLuckyDayForm } from "types";
 import * as S from "./SelectCount.styled";
 
 interface SelectCountProps {
-  selectableDate: number;
+  selectableDate?: number;
   isCountFirstSubStep?: boolean;
   isCountLastSubStep?: boolean;
   watch: UseFormWatch<CreateLuckyDayForm>;
@@ -16,7 +16,7 @@ interface SelectCountProps {
 }
 
 function SelectCount({
-  selectableDate,
+  selectableDate = 0,
   isCountFirstSubStep,
   isCountLastSubStep,
   watch,

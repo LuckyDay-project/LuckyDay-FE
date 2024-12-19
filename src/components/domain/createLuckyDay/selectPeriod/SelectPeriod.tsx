@@ -7,12 +7,16 @@ import type { CreateLuckyDayForm } from "types";
 import * as S from "./SelectPeriod.styled";
 
 interface SelectPeriodProps {
-  isLastSubStep: boolean;
+  isLastSubStep?: boolean;
   watch: UseFormWatch<CreateLuckyDayForm>;
   setValue: UseFormSetValue<CreateLuckyDayForm>;
 }
 
-function SelectPeriod({ isLastSubStep, watch, setValue }: SelectPeriodProps) {
+function SelectPeriod({
+  isLastSubStep = false,
+  watch,
+  setValue,
+}: SelectPeriodProps) {
   const selectPeriod = LUCKYDAY_PERIODS.find(
     (item) => item.period === watch("period")
   );
