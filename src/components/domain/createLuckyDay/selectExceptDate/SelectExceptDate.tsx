@@ -31,7 +31,7 @@ function SelectExceptDate({
   )?.expDate;
 
   const EndOfDate = dayjs(dayjs())
-    .add(+selectedPeriod, "day")
+    .add(isThisMonth ? 30 : +selectedPeriod, "day")
     .subtract(+1, "day")
     .format("YYYY년 MM월 DD일");
 
