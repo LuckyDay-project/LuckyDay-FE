@@ -25,7 +25,8 @@ export default function SelectActivity() {
 
   const { handleSubStepClick, currentStep, subStep, nextStep } = useTutorial();
 
-  const [selected, setSelected] = useState<string[]>([]);
+  //추후 상태 설정 코드 추가 예정
+  const [, setSelected] = useState<string[]>([]);
   const [customed, setCustomed] = useState<string[]>([
     "치즈김치볶음밥 만들어 먹기",
     "그림일기로 하루 되돌아보기",

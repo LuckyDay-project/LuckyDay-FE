@@ -25,7 +25,7 @@ export const TUTORIAL_TEXTS: TutorialTextType = {
   },
   [TUTORIAL_STEPS.CREATE_CYCLE_SET_DATE]: {
     "1": `선택한 기간 안에서 원하는 개수의<br/>럭키데이 활동과 날짜가 랜덤 배정되어요.`,
-    "2": `저는 오늘로부터 30일 동안<br/>4개의 럭키데이를 받고 싶어요.<br/><br/>아래 기간을 선택해주세요.`,
+    "2": `저는 오늘로부터 30일 동안 럭키데이를 받고 싶어요.<br/><br/>아래 기간을 선택해주세요.`,
     "3": `럭키데이 개수를 선택하러 가요!`,
   },
   [TUTORIAL_STEPS.CREATE_CYCLE_SET_NUMBER]: {
