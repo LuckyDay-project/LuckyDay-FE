@@ -72,7 +72,7 @@ const useCalendar = (
   }, [dates]);
 
   useEffect(() => {
-    if (!isSelectable12th) return;
+    if (!isSelectable12th || !isThisMonth) return;
 
     setCurrentMonth(dayjs(currentMonth.add(1, "month")));
   }, [isThisMonth]);
