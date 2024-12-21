@@ -276,7 +276,6 @@ export const ButtonWrapper = styled.div`
   justify-content: space-between;
   height: calc(var(--vh, 1vh) * 100 - 80px);
   min-height: calc(100% - 80px);
-  padding: 3% 5% 6% 5%;
 `;
 
 export const Button = styled.button`
