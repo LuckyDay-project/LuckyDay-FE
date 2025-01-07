@@ -5,8 +5,6 @@ import { useToast } from "hooks";
 import { LUCKYDAY_PERIODS } from "assets";
 
 const useCalendar = (
-  isThisMonth: boolean,
-  isSelectable12th: boolean,
   dates: string,
   expDates: string[],
   makeExpDates: (dates: string) => void
@@ -70,12 +68,6 @@ const useCalendar = (
   useEffect(() => {
     setPeriod(dates);
   }, [dates]);
-
-  useEffect(() => {
-    if (!isSelectable12th || !isThisMonth) return;
-
-    setCurrentMonth(dayjs(currentMonth.add(1, "month")));
-  }, [isThisMonth]);
 
   return {
     currentMonth,

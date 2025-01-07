@@ -14,8 +14,6 @@ interface ActivityToggleProps {
   };
   data?: Activities;
   index: number;
-  isFourthSubStep?: boolean;
-  isSixthSubStep?: boolean;
   isOpen: boolean;
   toggle: string | null;
   checked: boolean;
@@ -30,8 +28,6 @@ function ActivityToggle({
   data,
   index,
   checked,
-  isFourthSubStep,
-  isSixthSubStep,
   isOpen,
   toggle,
   setValue,
@@ -134,15 +130,6 @@ function ActivityToggle({
   return (
     <>
       <S.ActivityButton
-        className={
-          activity.label === "맛있는 음식"
-            ? "tutoral_selectActivity_02"
-            : activity.label === "배움과 문화"
-            ? "tutoral_selectActivity_05"
-            : activity.label === "+) 직접 입력"
-            ? "tutoral_selectActivity_07"
-            : ""
-        }
         key={index}
         ref={ref}
         isOpen={isOpen}
@@ -186,11 +173,7 @@ function ActivityToggle({
 
                   return (
                     <S.Activity
-                      isSelected={
-                        isSelected ||
-                        (isFourthSubStep && item.keyword === "치킨") ||
-                        isSixthSubStep
-                      }
+                      isSelected={isSelected}
                       ref={activityRef}
                       key={item.actNo}
                       onClick={handleItemClick(item.actNo)}
