@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import {
-  SelectActivity,
-  SelectCount,
-  SelectPeriod,
-  SelectExceptDate,
-  ProgressBar,
-  ButtonLayout,
-  CreateLuckyDayModal,
-} from "components";
+import { ButtonLayout, ProgressBar } from "components";
 import { ArrowIcon } from "assets";
-import { useModal, useToast } from "hooks";
+import { useToast } from "hooks";
+import SelectActivity from "./selectActivity/SelectActivity";
+import SelectPeriod from "./selectPeriod/SelectPeriod";
+import SelectCount from "./selectCount/SelectCount";
+import SelectExceptDate from "./selectExceptDate/SelectExceptDate";
 import type { ActivitiesServerModel, CreateLuckyDayForm } from "types";
 import * as S from "./CreateLuckyDay.styled";
 
@@ -53,7 +49,7 @@ function CreateLuckyDay({
   const [currentProgress, setCurrentProgress] = useState(0);
   const [, setSelectedItems] = useState<number[]>([]);
 
-  const { setValue, watch, handleSubmit } = useForm<CreateLuckyDayForm>({
+  const { setValue, watch } = useForm<CreateLuckyDayForm>({
     defaultValues: {
       customActList: [],
       period: 0,
@@ -64,7 +60,6 @@ function CreateLuckyDay({
     mode: "onTouched",
   });
 
-  const { handleOpenModal } = useModal();
   const { addToast } = useToast();
 
   const changeCurrentProgress = (progress: number) => (): void => {
@@ -147,14 +142,6 @@ function CreateLuckyDay({
     }
 
     if (currentProgress !== 3) return changeCurrentProgress(+1)();
-
-    handleOpenModal(
-      <CreateLuckyDayModal
-        className={isConfirmLastSubStep ? "confirm" : ""}
-        watch={watch}
-        handleSubmit={handleSubmit}
-      />
-    );
   };
 
   useEffect(() => {
