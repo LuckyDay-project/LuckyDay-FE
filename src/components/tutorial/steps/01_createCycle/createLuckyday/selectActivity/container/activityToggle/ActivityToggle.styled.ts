@@ -128,10 +128,10 @@ export const icon = css`
   height: 12px;
 `;
 
-export const input = (width?: number) => (theme: Theme) =>
+export const input = (theme: Theme) =>
   css`
     ${theme.fonts.body1};
-    width: ${width ? `calc(${width}px * 1.2 + 16px)` : "22px"};
+    width: 22px;
     padding: 0;
     border: 0;
     background-color: ${theme.colors.lightBeige};

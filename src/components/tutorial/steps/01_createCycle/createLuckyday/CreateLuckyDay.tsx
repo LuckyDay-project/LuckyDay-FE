@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
 
 import { ButtonLayout } from "components";
 import { ArrowIcon } from "assets";
@@ -9,7 +8,6 @@ import SelectPeriod from "./selectPeriod/SelectPeriod";
 import SelectCount from "./selectCount/SelectCount";
 import SelectExceptDate from "./selectExceptDate/SelectExceptDate";
 import { ProgressBar } from "./container";
-import type { ActivitiesServerModel, CreateLuckyDayForm } from "types";
 import * as S from "./CreateLuckyDay.styled";
 
 interface CreateLuckyDayProps {
@@ -27,7 +25,6 @@ interface CreateLuckyDayProps {
   isActivityLastSubStep?: boolean;
   nextProgress?: number;
   selectableDate?: number;
-  data?: ActivitiesServerModel;
 }
 
 function CreateLuckyDay({
@@ -44,22 +41,8 @@ function CreateLuckyDay({
   isConfirmLastSubStep,
   isActivityLastSubStep,
   nextProgress,
-  selectableDate,
-  data,
 }: CreateLuckyDayProps) {
   const [currentProgress, setCurrentProgress] = useState(0);
-  const [, setSelectedItems] = useState<number[]>([]);
-
-  const { setValue, watch } = useForm<CreateLuckyDayForm>({
-    defaultValues: {
-      customActList: [],
-      period: 0,
-      cnt: 1,
-      expDTList: [],
-      acts: [],
-    },
-    mode: "onTouched",
-  });
 
   const { addToast } = useToast();
 
@@ -74,19 +57,11 @@ function CreateLuckyDay({
     setCurrentProgress(changedProgress);
   };
 
-  const getSelectItems = (value: number[]): void => {
-    setSelectedItems(value);
-  };
-
   const changePage = (current: number): React.ReactNode => {
     switch (current) {
       case 0:
         return (
           <SelectActivity
-            data={data}
-            getSelectItems={getSelectItems}
-            setValue={setValue}
-            watch={watch}
             isThirdSubStep={isThirdSubStep}
             isFourthSubStep={isFourthSubStep}
             isFifthSubStep={isFifthSubStep}
@@ -96,69 +71,26 @@ function CreateLuckyDay({
           />
         );
       case 1:
-        return (
-          <SelectPeriod
-            isLastSubStep={isDateLastSubStep ?? false}
-            setValue={setValue}
-            watch={watch}
-          />
-        );
-      case 2:
-        return (
-          <SelectCount
-            selectableDate={selectableDate ?? 0}
-            isCountFirstSubStep={isCountFirstSubStep}
-            isCountLastSubStep={isCountLastSubStep}
-            setValue={setValue}
-            watch={watch}
-          />
-        );
-      case 3:
-        return (
-          <SelectExceptDate
-            isDatesFirstSubStep={isDatesFirstSubStep}
-            isDatesLastSubStep={isDatesLastSubStep || isConfirmLastSubStep}
-            setValue={setValue}
-            watch={watch}
-          />
-        );
+      // return <SelectPeriod isLastSubStep={isDateLastSubStep ?? false} />;
+      // case 2:
+      //   return (
+      //     <SelectCount
+      //       selectableDate={selectableDate ?? 0}
+      //       isCountFirstSubStep={isCountFirstSubStep}
+      //       isCountLastSubStep={isCountLastSubStep}
+      //     />
+      //   );
+      // case 3:
+      //   return (
+      //     <SelectExceptDate
+      //       isDatesFirstSubStep={isDatesFirstSubStep}
+      //       isDatesLastSubStep={isDatesLastSubStep || isConfirmLastSubStep}
+      //          />
+      //   );
     }
   };
 
-  const handleClickNextButton = () => {
-    const emptyActList = watch("acts")
-      .filter(({ actList }) => !!actList)
-      .flatMap((item) => item.actList);
-
-    if (
-      currentProgress === 0 &&
-      !emptyActList?.length &&
-      !watch("customActList")?.length
-    ) {
-      return addToast({ content: "최소 1개의 카테고리를 선택해 주세요." });
-    }
-
-    if (currentProgress === 1 && watch("period") === 0) {
-      return addToast({ content: "최소 1개의 기간을 선택해 주세요." });
-    }
-
-    if (currentProgress !== 3) return changeCurrentProgress(+1)();
-  };
-
-  useEffect(() => {
-    if (!data) return;
-
-    setValue(
-      "acts",
-      data.resData
-        .map((item) => ({
-          category: item.category,
-          actList: [],
-          checked: false,
-        }))
-        .filter(({ category }) => category !== "직접 입력")
-    );
-  }, [data]);
+  const handleClickNextButton = () => {};
 
   return (
     <ButtonLayout

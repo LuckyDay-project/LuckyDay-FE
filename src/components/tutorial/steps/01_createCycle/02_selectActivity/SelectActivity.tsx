@@ -1,5 +1,3 @@
-import { useRef, useState } from "react";
-
 import {
   Input,
   SvgFrame,
@@ -8,116 +6,27 @@ import {
   useTutorial,
   useTutorialStep,
 } from "components";
-import { useToast } from "hooks";
 import {
   activities,
   ArrowIcon,
   CheckIcon,
   CloseIcon,
+  luckydayActs,
   ShortBoxIcon,
 } from "assets";
-import { useGetLuckyDaysActivities } from "services";
 import CreateLuckyDay from "../createLuckyday/CreateLuckyDay";
 import * as S from "./SelectActivity.styled";
 
 export default function SelectActivity() {
-  const { data } = useGetLuckyDaysActivities();
-
   const { handleSubStepClick, currentStep, subStep, nextStep } = useTutorial();
 
-  //추후 상태 설정 코드 추가 예정
-  const [, setSelected] = useState<string[]>([]);
-  const [customed, setCustomed] = useState<string[]>([
-    "치즈김치볶음밥 만들어 먹기",
-    "그림일기로 하루 되돌아보기",
-  ]);
-  const [allSelected, setAllSelected] = useState<string[]>([]);
-  const [text, setText] = useState("");
-
-  const spanRef = useRef<HTMLSpanElement>(null);
-  const activityRef = useRef<HTMLButtonElement>(null);
-
-  const inputWidth = text.length
-    ? spanRef.current?.getBoundingClientRect().width
-    : 0;
-  const { addToast } = useToast();
-
-  const handleCustomItemChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length > 14) return;
-
-    setText(e.target.value);
-  };
-
-  const handleAddCustomActivity = (e: React.MouseEvent): void => {
-    e.stopPropagation();
-
-    const checkSameActivity = customed.includes(text);
-
-    if (checkSameActivity) {
-      addToast({ content: "이미 추가된 활동입니다." });
-      setText("");
-
-      return;
-    }
-    setCustomed([...customed, text]);
-    setText("");
-  };
-
-  const handleEnterCustomItemChange = (
-    e: React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    if (e.key === "Enter" && !e.nativeEvent.isComposing) {
-      handleAddCustomActivity(e as unknown as React.MouseEvent);
-    }
-  };
-
-  const DeleteCustomActivity = (selectedActivity: string) => (): void => {
-    const filteredActivities = customed?.filter(
-      (item) => item !== selectedActivity
-    );
-
-    setCustomed(filteredActivities);
-  };
-
-  const handleSelected = (item: string) => () => {
-    setSelected((prev) => {
-      const isSelected = prev.includes(item);
-      const updated = isSelected
-        ? prev.filter((select) => select !== item)
-        : [...prev, item];
-
-      return updated;
-    });
-
+  const customed = ["치즈김치볶음밥 만들어 먹기", "그림일기로 하루 되돌아보기"];
+  const handleSelected = () => {
     handleSubStepClick(4);
   };
 
-  const handleCustomed = (item: string) => () => {
-    setCustomed((prev) => {
-      const isSelected = prev.includes(item);
-      const updated = isSelected
-        ? prev.filter((select) => select !== item)
-        : [...prev, item];
-
-      return updated;
-    });
-  };
-
-  const handleAllSelected = (item: string) => () => {
-    setAllSelected((prev) => {
-      const isSelected = prev.includes(item);
-      const updated = isSelected
-        ? prev.filter((select) => select !== item)
-        : [...prev, item];
-
-      return updated;
-    });
-
+  const handleAllSelected = () => {
     handleSubStepClick(6);
-  };
-
-  const handleStopPropagation = (e: React.MouseEvent): void => {
-    e.stopPropagation();
   };
 
   const isSecondSubStep =
@@ -209,14 +118,14 @@ export default function SelectActivity() {
                 <ArrowIcon css={S.arrowIcon(true)} />
               </S.ActivityInfo>
               <S.Activities>
-                {data?.resData[2].actList?.map((item) => {
+                {luckydayActs[1].actList?.map((item) => {
                   return (
                     <S.Activity
                       key={item.keyword}
                       isSelected={false}
                       isClickable={item.keyword === "치킨"}
                       disabled={item.keyword !== "치킨"}
-                      onClick={handleSelected(item.keyword)}
+                      onClick={handleSelected}
                     >
                       <CheckIcon css={S.icon} />
                       {item.keyword}
@@ -270,23 +179,18 @@ export default function SelectActivity() {
                 <S.CheckboxWrapper isOpen isDisabled={false}>
                   <input
                     type="checkbox"
-                    checked={allSelected.includes(activities[2].label)}
+                    checked={false}
                     id="checkbox"
-                    onChange={handleAllSelected(activities[2].label)}
+                    onChange={handleAllSelected}
                   />
                   <label htmlFor="checkbox" />
                 </S.CheckboxWrapper>
                 <ArrowIcon css={S.arrowIcon(true)} />
               </S.ActivityInfo>
               <S.Activities>
-                {data?.resData[3].actList?.map((item) => {
+                {luckydayActs[2].actList?.map((item) => {
                   return (
-                    <S.Activity
-                      key={item.keyword}
-                      isSelected={false}
-                      disabled
-                      onClick={handleSelected(item.keyword)}
-                    >
+                    <S.Activity key={item.keyword} isSelected={false} disabled>
                       <CheckIcon css={S.icon} />
                       {item.keyword}
                     </S.Activity>
@@ -315,32 +219,15 @@ export default function SelectActivity() {
               </S.ActivityInfo>
               <S.Activities>
                 <S.CustomActivityWrapper>
-                  <S.customActiviyItem ref={spanRef}>
-                    {text}
-                  </S.customActiviyItem>
-                  <S.CustomActivity
-                    ref={activityRef}
-                    key={activities[5].label}
-                    onClick={handleStopPropagation}
-                  >
-                    <Input
-                      // value={text}
-                      css={S.input(inputWidth)}
-                      placeholder=""
-                      handleChange={handleCustomItemChange}
-                      handleKeyDown={handleEnterCustomItemChange}
-                    />
+                  <S.customActiviyItem />
+                  <S.CustomActivity key={activities[5].label}>
+                    <Input css={S.input} placeholder="" />
                   </S.CustomActivity>
                   {customed.map((item, i) => {
                     return (
-                      <S.CustomActivity
-                        key={i}
-                        isSelected
-                        hasValue
-                        onClick={handleStopPropagation}
-                      >
+                      <S.CustomActivity key={i} isSelected hasValue>
                         {item}
-                        <CloseIcon onClick={DeleteCustomActivity(item)} />
+                        <CloseIcon />
                       </S.CustomActivity>
                     );
                   })}
@@ -348,8 +235,8 @@ export default function SelectActivity() {
               </S.Activities>
             </S.ActivityBox>
             <S.CustomInfo isCustom>
-              <S.ContentLength>{text.length}/14</S.ContentLength>
-              <S.AddButton onClick={handleCustomed(text)}>추가</S.AddButton>
+              <S.ContentLength>0/14</S.ContentLength>
+              <S.AddButton>추가</S.AddButton>
             </S.CustomInfo>
           </S.ActivityButton>
         ),
@@ -382,7 +269,6 @@ export default function SelectActivity() {
         isSeventhSubStep={isSeventhSubStep}
         isActivityLastSubStep={isLastSubStep}
         nextProgress={0}
-        data={data}
       />
     </S.Container>
   );

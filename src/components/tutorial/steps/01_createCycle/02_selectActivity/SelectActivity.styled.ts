@@ -152,10 +152,10 @@ export const icon = css`
   height: 12px;
 `;
 
-export const input = (width?: number) => (theme: Theme) =>
+export const input = (theme: Theme) =>
   css`
     ${theme.fonts.body1};
-    width: ${width ? `calc(${width}px * 1.2 + 16px)` : "22px"};
+    width: 22px;
     padding: 0;
     border: 0;
     background-color: ${theme.colors.lightBeige};
@@ -171,7 +171,7 @@ export const CustomInfo = styled.div<{ isCustom?: boolean }>`
   ${({ theme, isCustom }) => css`
     ${theme.fonts.body1};
     position: absolute;
-    bottom: -30px; //NOTE: 확인필요
+    bottom: 60px; //NOTE: 확인필요
     left: 0;
     display: ${isCustom ? "flex" : "none"};
     width: 100%;

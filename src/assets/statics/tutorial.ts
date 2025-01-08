@@ -1,0 +1,36 @@
+export const luckydayActs = [
+  { category: "특별한 선물", actList: [] },
+  {
+    category: "맛있는 음식",
+    actList: [
+      { keyword: "치킨", actNo: 1 },
+      { keyword: "초밥", actNo: 2 },
+      { keyword: "마라탕", actNo: 3 },
+      { keyword: "떡볶이", actNo: 4 },
+      { keyword: "탕후루", actNo: 5 },
+      { keyword: "아이스크림", actNo: 6 },
+      { keyword: "제철 과일", actNo: 7 },
+      { keyword: "케이크", actNo: 8 },
+      { keyword: "칵테일", actNo: 9 },
+      { keyword: "와인", actNo: 10 },
+      { keyword: "맥주", actNo: 11 },
+    ],
+  },
+  {
+    category: "배움과 문화",
+    actList: [
+      { keyword: "연극", actNo: 1 },
+      { keyword: "뮤지컬", actNo: 2 },
+      { keyword: "전시", actNo: 3 },
+      { keyword: "영화관", actNo: 4 },
+      { keyword: "서점", actNo: 5 },
+      { keyword: "독서 모임", actNo: 6 },
+      { keyword: "강연", actNo: 7 },
+      { keyword: "운동", actNo: 8 },
+      { keyword: "원데 클래스", actNo: 9 },
+      { keyword: "자전거", actNo: 10 },
+    ],
+  },
+  { category: "이동과 탐험", actList: [] },
+  { category: "일상 속 소소함", actList: [] },
+];
