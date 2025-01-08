@@ -71,7 +71,7 @@ function CreateLuckyDay({
           />
         );
       case 1:
-      // return <SelectPeriod isLastSubStep={isDateLastSubStep ?? false} />;
+        return <SelectPeriod isLastSubStep={isDateLastSubStep ?? false} />;
       // case 2:
       //   return (
       //     <SelectCount
