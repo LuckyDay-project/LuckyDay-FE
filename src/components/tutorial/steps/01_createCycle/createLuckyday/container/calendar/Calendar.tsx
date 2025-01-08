@@ -9,7 +9,6 @@ interface CalendarProps {
   isDatesLastSubStep?: boolean;
   dates: string;
   expDates: string[];
-  makeExpDates: (dates: string) => void;
 }
 
 const Calendar = ({
@@ -17,7 +16,6 @@ const Calendar = ({
   isDatesLastSubStep,
   dates,
   expDates,
-  makeExpDates,
 }: CalendarProps) => {
   const isSelectable12th = dayjs().date() > 12;
 
@@ -30,7 +28,7 @@ const Calendar = ({
     handleMoveToPrevMonth,
     handleMoveToNextMonth,
     handleDisabledCheck,
-  } = useCalendar(isThisMonth, isSelectable12th, dates, expDates, makeExpDates);
+  } = useCalendar(isThisMonth, isSelectable12th, dates, expDates);
 
   const dayWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
 
@@ -66,7 +64,7 @@ const Calendar = ({
               return (
                 <S.DayButton
                   className={
-                    isThisMonth && i === 12 + emptyDates.length + 2
+                    isThisMonth && i === 12 + emptyDates.length - 1
                       ? "calendar"
                       : ""
                   }

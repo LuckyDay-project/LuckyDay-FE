@@ -72,13 +72,13 @@ function CreateLuckyDay({
         return <SelectPeriod isLastSubStep={isDateLastSubStep ?? false} />;
       case 2:
         return <SelectCount isCountFirstSubStep={isCountFirstSubStep} />;
-      // case 3:
-      //   return (
-      //     <SelectExceptDate
-      //       isDatesFirstSubStep={isDatesFirstSubStep}
-      //       isDatesLastSubStep={isDatesLastSubStep || isConfirmLastSubStep}
-      //          />
-      //   );
+      case 3:
+        return (
+          <SelectExceptDate
+            isDatesFirstSubStep={isDatesFirstSubStep}
+            isDatesLastSubStep={isDatesLastSubStep || isConfirmLastSubStep}
+          />
+        );
     }
   };
 

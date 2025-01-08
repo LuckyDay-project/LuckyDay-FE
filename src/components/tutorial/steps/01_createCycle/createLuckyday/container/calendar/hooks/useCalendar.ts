@@ -8,8 +8,7 @@ const useCalendar = (
   isThisMonth: boolean,
   isSelectable12th: boolean,
   dates: string,
-  expDates: string[],
-  makeExpDates: (dates: string) => void
+  expDates: string[]
 ) => {
   const [currentMonth, setCurrentMonth] = useState(dayjs());
   const [period, setPeriod] = useState("");
@@ -63,8 +62,6 @@ const useCalendar = (
 
       setDisabled(currentDate);
     }
-
-    makeExpDates(formattedDate);
   };
 
   useEffect(() => {
