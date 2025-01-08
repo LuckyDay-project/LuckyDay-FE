@@ -280,7 +280,7 @@ export const ButtonWrapper = styled.div`
 
 export const Button = styled.button`
   position: absolute;
-  bottom: 6%;
+  bottom: 7%;
   right: 5%;
   width: 90px;
 `;

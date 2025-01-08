@@ -10,7 +10,7 @@ export const ButtonWrapper = styled.div`
   justify-content: space-between;
   height: calc(var(--vh, 1vh) * 100 - 80px);
   min-height: calc(100% - 80px);
-  padding: 3% 5% 6% 5%;
+  padding: 3% 5% 7% 5%;
 `;
 
 export const ButtonBox = styled.div`
@@ -28,7 +28,7 @@ export const ButtonBox = styled.div`
 
 export const Button = styled.button`
   position: absolute;
-  bottom: 6%;
+  bottom: 7%;
   right: 5%;
   width: 90px;
 `;

@@ -21,6 +21,7 @@ export default function SelectActivity() {
   const { handleSubStepClick, currentStep, subStep, nextStep } = useTutorial();
 
   const customed = ["치즈김치볶음밥 만들어 먹기", "그림일기로 하루 되돌아보기"];
+
   const handleSelected = () => {
     handleSubStepClick(4);
   };
@@ -84,6 +85,7 @@ export default function SelectActivity() {
                       id="checkbox"
                       checked={false}
                       onChange={() => {}}
+                      disabled
                     />
                     <label htmlFor="checkbox" />
                   </S.CheckboxWrapper>
