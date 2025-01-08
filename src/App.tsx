@@ -12,7 +12,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import isBetween from "dayjs/plugin/isBetween";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
-import "dayjs/locale/ko"; // 한국어 가져오기
+import "dayjs/locale/ko";
 
 dayjs.extend(relativeTime);
 dayjs.extend(isBetween);
@@ -21,24 +21,30 @@ dayjs.locale("ko");
 
 const queryClient = new QueryClient();
 
-export default function App() {
+function AppContent() {
   useAccessDenied();
   useTokenExpiration();
 
   return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <Global styles={globalStyle} />
+        <TutorialProvider>
+          <Router>
+            <Modal />
+            <Toast />
+          </Router>
+          <TutorialLayout />
+        </TutorialProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
+}
+
+export default function App() {
+  return (
     <RecoilRoot>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
-          <Global styles={globalStyle} />
-          <TutorialProvider>
-            <Router>
-              <Modal />
-              <Toast />
-            </Router>
-            <TutorialLayout />
-          </TutorialProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
+      <AppContent />
     </RecoilRoot>
   );
 }

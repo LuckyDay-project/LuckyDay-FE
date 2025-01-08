@@ -18,23 +18,20 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
-    if (response.data?.code === "1004") {
-      window.dispatchEvent(new CustomEvent("ACCESS_DENIED"));
-      return Promise.reject();
-    }
-    if (response.data?.code === "1001") {
-      window.dispatchEvent(new CustomEvent("TOKEN_EXPIRED"));
-      return Promise.reject();
-    }
     return response;
   },
   (error) => {
-    if (error.response?.status === 403) {
+    const status = error.response?.status;
+    const errorCode = error.response?.data?.code;
+
+    if (status === 403 || errorCode === "1004") {
       window.dispatchEvent(new CustomEvent("ACCESS_DENIED"));
     }
-    if (error.response?.status === 401) {
+
+    if (status === 401 || errorCode === "1001") {
       window.dispatchEvent(new CustomEvent("TOKEN_EXPIRED"));
     }
+
     return Promise.reject(error);
   }
 );
