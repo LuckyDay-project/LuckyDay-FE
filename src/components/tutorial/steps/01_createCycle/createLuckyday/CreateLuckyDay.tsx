@@ -7,7 +7,7 @@ import SelectActivity from "./selectActivity/SelectActivity";
 import SelectPeriod from "./selectPeriod/SelectPeriod";
 import SelectCount from "./selectCount/SelectCount";
 import SelectExceptDate from "./selectExceptDate/SelectExceptDate";
-import { ProgressBar } from "./container";
+import { CreateLuckyDayModal, ProgressBar } from "./container";
 import * as S from "./CreateLuckyDay.styled";
 
 interface CreateLuckyDayProps {
@@ -96,6 +96,9 @@ function CreateLuckyDay({
       <S.CreateLuckyDay>
         <ProgressBar progressState={nextProgress ?? currentProgress} />
         {changePage(nextProgress ?? currentProgress)}
+        {isConfirmLastSubStep && (
+          <CreateLuckyDayModal isConfirmLastSubStep={isConfirmLastSubStep} />
+        )}
       </S.CreateLuckyDay>
     </ButtonLayout>
   );
