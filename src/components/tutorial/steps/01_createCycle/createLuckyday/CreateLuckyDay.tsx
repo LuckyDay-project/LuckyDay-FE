@@ -18,7 +18,6 @@ interface CreateLuckyDayProps {
   isSeventhSubStep?: boolean;
   isDateLastSubStep?: boolean;
   isCountFirstSubStep?: boolean;
-  isCountLastSubStep?: boolean;
   isDatesFirstSubStep?: boolean;
   isDatesLastSubStep?: boolean;
   isConfirmLastSubStep?: boolean;
@@ -35,7 +34,6 @@ function CreateLuckyDay({
   isSeventhSubStep,
   isDateLastSubStep,
   isCountFirstSubStep,
-  isCountLastSubStep,
   isDatesFirstSubStep,
   isDatesLastSubStep,
   isConfirmLastSubStep,
@@ -72,14 +70,8 @@ function CreateLuckyDay({
         );
       case 1:
         return <SelectPeriod isLastSubStep={isDateLastSubStep ?? false} />;
-      // case 2:
-      //   return (
-      //     <SelectCount
-      //       selectableDate={selectableDate ?? 0}
-      //       isCountFirstSubStep={isCountFirstSubStep}
-      //       isCountLastSubStep={isCountLastSubStep}
-      //     />
-      //   );
+      case 2:
+        return <SelectCount isCountFirstSubStep={isCountFirstSubStep} />;
       // case 3:
       //   return (
       //     <SelectExceptDate

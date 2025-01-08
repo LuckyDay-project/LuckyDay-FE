@@ -65,7 +65,6 @@ export default function SetNumber() {
     <S.Container className={isLastSubStep ? "button" : ""}>
       <CreateLuckyDay
         isCountFirstSubStep={isFirstSubStep}
-        isCountLastSubStep={isLastSubStep}
         selectableDate={30}
         nextProgress={2}
       />
