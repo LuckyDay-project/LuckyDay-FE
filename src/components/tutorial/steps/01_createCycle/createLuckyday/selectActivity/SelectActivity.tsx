@@ -1,6 +1,7 @@
 import React from "react";
 
-import { activities, CheckIcon, luckydayActs } from "assets";
+import { activities, CheckIcon } from "assets";
+import { luckydayActs } from "constants/index";
 import { ActivityToggle } from "./container";
 import * as S from "./SelectActivity.styled";
 

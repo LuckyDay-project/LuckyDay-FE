@@ -11,9 +11,9 @@ import {
   ArrowIcon,
   CheckIcon,
   CloseIcon,
-  luckydayActs,
   ShortBoxIcon,
 } from "assets";
+import { luckydayActs } from "constants/index";
 import CreateLuckyDay from "../createLuckyday/CreateLuckyDay";
 import * as S from "./SelectActivity.styled";
 
