@@ -16,19 +16,6 @@ function SelectCount() {
     (item) => item.period === watch("period")
   );
 
-  const handleSelectCounts = (currentCount: number) => (): void => {
-    const selectedPeriodCounts = selectedPeriod?.cnt;
-
-    if (!selectedPeriodCounts) return;
-
-    if (currentCount <= 0)
-      return addToast({ content: "최소 1개의 럭키 데이를 선택해 주세요." });
-    if (currentCount > selectedPeriodCounts)
-      return addToast({
-        content: `최대 ${selectedPeriodCounts}개의 럭키 데이를 선택할 수 있어요.`,
-      });
-  };
-
   return (
     <>
       <S.HeadLine>
@@ -46,8 +33,11 @@ function SelectCount() {
           render={({ field: { onChange, value } }) => {
             const handleChange = (count: number) => (): void => {
               const currentCount = value + count;
+              if (currentCount <= 0)
+                return addToast({
+                  content: "최소 1개의 럭키 데이를 선택해 주세요.",
+                });
 
-              handleSelectCounts(currentCount);
               onChange(value + count);
             };
 
@@ -65,7 +55,14 @@ function SelectCount() {
           name="cnt"
           render={({ field: { onChange, value } }) => {
             const handleChange = (count: number) => () => {
-              handleSelectCounts(count);
+              const currentCount = value + count;
+              const selectedPeriodCounts = selectedPeriod?.cnt || 0;
+
+              if (currentCount > selectedPeriodCounts)
+                return addToast({
+                  content: `최대 ${selectedPeriodCounts}개의 럭키 데이를 선택할 수 있어요.`,
+                });
+
               onChange(value + count);
             };
 
